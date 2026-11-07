@@ -1,9 +1,9 @@
-#include <car.h>
+#include Car.h
 #include <deque>
 #include <iostream>
 #include <iomanip>
 
-using namesapce std;
+using namespace std;
 
 void event(deque<Car>&);
 
@@ -14,13 +14,16 @@ int main() {
 
     deque<Car> cars;
     for (int i = 0; i < INITIAL_LENGTH; ++i) {
-        cars.pushback(Car());
+        cars.push_back(Car());
     }
 
     cout << "Initial Queue:\n";
-    for (Car currentCar : cars) {
-        cout << "     " << currentCar.print();
+    for (currentCar : cars) {
+        cout << "     ";
+        currentCar.print()
+        cout << endl;
     }
+    cout << endl;
 
     while (!cars.is_empty()) {
         time++;
@@ -29,10 +32,28 @@ int main() {
         random = (rand() % 100) + 1;
         if (random >= 45) {
             // car pays
-            newCar = 
-            cout << "Joined lane: "
+            cout << "Car paid: ";
+            cars.front().print();
+            cout << endl;
+            cars.pop_front();
         } else {
             // car joins
+            newCar = Car();
+            cout << "Joined lane: ";
+            newCar.print(); 
+            cout << endl;
+            cars.push_back(newCar);
         }
+        cout << "Queue:\n";
+        if (cars.is_empty()) {
+            cout << "     Empty"; 
+        } else {
+            for (currentCar : cars) {
+                cout << "     ";
+                currentCar.print();
+                cout << endl;
+        }
+    }
+    cout << endl;
     }
 }
