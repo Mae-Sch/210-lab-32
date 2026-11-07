@@ -1,15 +1,15 @@
-#include Car.h
+#include "Car.h"
 #include <deque>
 #include <iostream>
 #include <iomanip>
 
 using namespace std;
 
-void event(deque<Car>&);
-
 const int INITIAL_LENGTH = 2;
 
 int main() {
+    srand(time(0));
+
     int time = 0;
 
     deque<Car> cars;
@@ -18,40 +18,35 @@ int main() {
     }
 
     cout << "Initial Queue:\n";
-    for (currentCar : cars) {
+    for (Car currentCar : cars) {
         cout << "     ";
-        currentCar.print()
-        cout << endl;
+        currentCar.print();
     }
     cout << endl;
 
-    while (!cars.is_empty()) {
+    while (!cars.empty()) {
         time++;
-        event(cars);
-        cout << "Time: " << time << "Operation: ";
-        random = (rand() % 100) + 1;
+        cout << "Time: " << time << " Operation: ";
+        int random = (rand() % 100) + 1;
         if (random >= 45) {
             // car pays
             cout << "Car paid: ";
             cars.front().print();
-            cout << endl;
             cars.pop_front();
         } else {
             // car joins
-            newCar = Car();
+            Car newCar = Car();
             cout << "Joined lane: ";
             newCar.print(); 
-            cout << endl;
             cars.push_back(newCar);
         }
         cout << "Queue:\n";
-        if (cars.is_empty()) {
+        if (cars.empty()) {
             cout << "     Empty"; 
         } else {
-            for (currentCar : cars) {
+            for (Car currentCar : cars) {
                 cout << "     ";
                 currentCar.print();
-                cout << endl;
         }
     }
     cout << endl;
