@@ -58,14 +58,40 @@ int main() {
                 lanes[0].front().print();
                 lanes[0].pop_front();
             } 
-            else /*if (random < CAR_JOIN)*/ 
+            else if (random < (CAR_PAY + CAR_JOIN)) 
             {
                 // car joins
                 Car newCar = Car();
                 cout << " Joined: ";
                 newCar.print(); 
                 lanes[0].push_back(newCar);
-            }
+            } else 
+            {/*
+                // car switches
+                // we want cars to only switch to adjacent lanes
+                // so if in first lane, has to move up one
+                // and if in last lane, has to move down one
+                // otherwise pick randomly between adjacent lanes
+                int targetLane;
+                if (i = 0) {
+                    targetLane = 1;
+                }
+                else if (i = NUM_LANES - 1) {
+                    targetLane = i - 1;
+                }
+                else {
+                    random = rand() % 2;
+                    if (random == 0)
+                        targetLane = i - 1;
+                    else
+                        targetLane = i + 1;
+                }
+                Car switchingCar = lanes[i].back();
+                lanes[i].pop_back();
+                lanes[targetLane].push_back(switchingCar);
+                cout << " Switched to Lane " << targetLane << ": ";
+                switchingCar.print();
+            */}
         }
         // loop for lane outputs
         for (int i = 0; i < NUM_LANES; ++i) {
