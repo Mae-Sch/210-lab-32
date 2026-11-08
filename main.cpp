@@ -43,17 +43,14 @@ int main() {
 
     int time = 1;
 
-    while (time <= 3) {
+    while (time <= 20) {
         cout << "Time: " << time << endl;
         // loop for all car operations
         time++;
 
-        // for debugging only:
-        cin >> time;
-
         for (int i = 0; i < NUM_LANES; ++i) {
             cout << "Lane: " << i + 1;
-            int random = (rand() % 100) + 1;
+            int random = (rand() % 100);
             if ((random < CAR_PAY) && !lanes[i].empty()) 
             {
                 // car pays
@@ -76,11 +73,11 @@ int main() {
                 // so if in first lane, has to move up one
                 // and if in last lane, has to move down one
                 // otherwise pick randomly between adjacent lanes
-                int targetLane = 0;
-                if (i = 0) {
+                int targetLane;
+                if (i == 0) {
                     targetLane = 1;
                 }
-                else if (i = NUM_LANES - 1) {
+                else if (i == NUM_LANES - 1) {
                     targetLane = i - 1;
                 }
                 else {
@@ -92,8 +89,6 @@ int main() {
                 }
                 Car switchingCar = lanes[i].back();
                 lanes[i].pop_back();
-                if (lanes[targetLane].empty())
-                    cout << "\n Target lane empty \n";
                 lanes[targetLane].push_back(switchingCar);
                 cout << " Switched to Lane " << targetLane + 1 << ": ";
                 switchingCar.print();
