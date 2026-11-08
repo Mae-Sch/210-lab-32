@@ -35,37 +35,52 @@ int main() {
     }
 
     cout << "Initial Queue:\n";
-    for (Car currentCar : lanes[0]) {
-        cout << "     ";
-        currentCar.print();
+    for (int i = 0; i < NUM_LANES; ++i) {
+        cout << "Lane " << i << ":\n";
+        for (Car currentCar : lanes[0]) {
+            cout << "     ";
+            currentCar.print();
+        }
+        cout << endl;
     }
-    cout << endl;
 
     while (time < 20) {
-        time++;
-        cout << "Time: " << time << " Operation: ";
-        int random = (rand() % 100) + 1;
-        if ((random < CAR_PAY) && !lanes[0].empty()) {
-            // car pays
-            cout << "Car paid: ";
-            lanes[0].front().print();
-            lanes[0].pop_front();
-        } else /*if (random < CAR_JOIN)*/ {
-            // car joins
-            Car newCar = Car();
-            cout << "Joined lane: ";
-            newCar.print(); 
-            lanes[0].push_back(newCar);
+        cout << "Time: " << time << endl;
+        // loop for all car operations
+        for (int i = 0; i < NUM_LANES; ++i) {
+            time++;
+            cout << "Lane: " << i + 1;
+            int random = (rand() % 100) + 1;
+            if ((random < CAR_PAY) && !lanes[0].empty()) 
+            {
+                // car pays
+                cout << " Paid: ";
+                lanes[0].front().print();
+                lanes[0].pop_front();
+            } 
+            else /*if (random < CAR_JOIN)*/ 
+            {
+                // car joins
+                Car newCar = Car();
+                cout << " Joined: ";
+                newCar.print(); 
+                lanes[0].push_back(newCar);
+            }
         }
-        cout << "Queue:\n";
-        if (lanes[0].empty()) {
-            cout << "     Empty"; 
-        } else {
-            for (Car currentCar : lanes[0]) {
-                cout << "     ";
-                currentCar.print();
+        // loop for lane outputs
+        for (int i = 0; i < NUM_LANES; ++i) {
+            cout << "Lane " << i + 1 << " Queue:\n";
+            if (lanes[0].empty()) 
+            {
+                cout << "     Empty"; 
+            } 
+            else 
+            {
+                for (Car currentCar : lanes[0]) {
+                    cout << "     ";
+                    currentCar.print();
+            }
+            }
         }
-    }
-    cout << endl;
     }
 }
