@@ -29,17 +29,16 @@ int main() {
 
     // deque<Car> lane1;
     for (int i = 0; i < INITIAL_LENGTH; ++i) {
-        lanes[0].push_back(Car());
+        lanes[i].push_back(Car());
     }
 
     cout << "Initial Queue:\n";
     for (int i = 0; i < NUM_LANES; ++i) {
         cout << "Lane " << i + 1 << ":\n";
-        for (Car currentCar : lanes[0]) {
+        for (Car currentCar : lanes[i]) {
             cout << "     ";
             currentCar.print();
         }
-        cout << endl;
     }
 
     int time = 1;
@@ -55,12 +54,12 @@ int main() {
         for (int i = 0; i < NUM_LANES; ++i) {
             cout << "Lane: " << i + 1;
             int random = (rand() % 100) + 1;
-            if ((random < CAR_PAY) && !lanes[0].empty()) 
+            if ((random < CAR_PAY) && !lanes[i].empty()) 
             {
                 // car pays
                 cout << " Paid: ";
-                lanes[0].front().print();
-                lanes[0].pop_front();
+                lanes[i].front().print();
+                lanes[i].pop_front();
             } 
             else if (random < (CAR_PAY + CAR_JOIN)) 
             {
@@ -68,7 +67,7 @@ int main() {
                 Car newCar = Car();
                 cout << " Joined: ";
                 newCar.print(); 
-                lanes[0].push_back(newCar);
+                lanes[i].push_back(newCar);
             } 
             else if (!lanes[i].empty())
             {
@@ -93,7 +92,7 @@ int main() {
                 }
                 Car switchingCar = lanes[i].back();
                 lanes[i].pop_back();
-                if (targetLane.empty())
+                if (lanes[targetLane].empty())
                     cout << "\n Target lane empty \n";
                 lanes[targetLane].push_back(switchingCar);
                 cout << " Switched to Lane " << targetLane + 1 << ": ";
