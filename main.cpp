@@ -12,39 +12,39 @@ int main() {
 
     int time = 0;
 
-    deque<Car> cars;
+    deque<Car> lane1;
     for (int i = 0; i < INITIAL_LENGTH; ++i) {
-        cars.push_back(Car());
+        lane1.push_back(Car());
     }
 
     cout << "Initial Queue:\n";
-    for (Car currentCar : cars) {
+    for (Car currentCar : lane1) {
         cout << "     ";
         currentCar.print();
     }
     cout << endl;
 
-    while (!cars.empty()) {
+    while (!lane1.empty()) {
         time++;
         cout << "Time: " << time << " Operation: ";
         int random = (rand() % 100) + 1;
         if (random >= 45) {
             // car pays
             cout << "Car paid: ";
-            cars.front().print();
-            cars.pop_front();
+            lane1.front().print();
+            lane1.pop_front();
         } else {
             // car joins
             Car newCar = Car();
             cout << "Joined lane: ";
             newCar.print(); 
-            cars.push_back(newCar);
+            lane1.push_back(newCar);
         }
         cout << "Queue:\n";
-        if (cars.empty()) {
+        if (lane1.empty()) {
             cout << "     Empty"; 
         } else {
-            for (Car currentCar : cars) {
+            for (Car currentCar : lane1) {
                 cout << "     ";
                 currentCar.print();
         }
