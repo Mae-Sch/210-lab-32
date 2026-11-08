@@ -65,14 +65,15 @@ int main() {
                 cout << " Joined: ";
                 newCar.print(); 
                 lanes[0].push_back(newCar);
-            } else 
-            {/*
+            } 
+            else if (!lanes[i].empty())
+            {
                 // car switches
                 // we want cars to only switch to adjacent lanes
                 // so if in first lane, has to move up one
                 // and if in last lane, has to move down one
                 // otherwise pick randomly between adjacent lanes
-                int targetLane;
+                int targetLane = 0;
                 if (i = 0) {
                     targetLane = 1;
                 }
@@ -87,22 +88,24 @@ int main() {
                         targetLane = i + 1;
                 }
                 Car switchingCar = lanes[i].back();
-                lanes[i].pop_back();
-                lanes[targetLane].push_back(switchingCar);
+                //lanes[i].pop_back();
+                //lanes[targetLane].push_back(switchingCar);
                 cout << " Switched to Lane " << targetLane << ": ";
                 switchingCar.print();
-            */}
+            } else {
+                cout << " Remains empty\n";
+            }
         }
         // loop for lane outputs
         for (int i = 0; i < NUM_LANES; ++i) {
             cout << "Lane " << i + 1 << " Queue:\n";
-            if (lanes[0].empty()) 
+            if (lanes[i].empty()) 
             {
-                cout << "     Empty"; 
+                cout << "     Empty\n"; 
             } 
             else 
             {
-                for (Car currentCar : lanes[0]) {
+                for (Car currentCar : lanes[i]) {
                     cout << "     ";
                     currentCar.print();
             }
